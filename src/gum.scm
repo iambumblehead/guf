@@ -1,28 +1,54 @@
-(use-modules (ncurses curses))
+#!/usr/bin/guile
+!#
 
-(define stdscr (initscr))
+(load "gumlay.scm")
+(load "gumwin.scm")
 
-;; https://www.gnu.org/software/guile-ncurses/manual/guile-ncurses.html
-(define (showme)
-  (let* ((mesg "Just a string")
-         (len (string-length mesg))
-         (siz (getmaxyx stdscr))
-         (row (car siz))
-         (col (cadr siz)))
+(define-module (gum gum)
+  #:version (0 0 1)
+  #:use-module (gum gumlay)
+  #:use-module (gum gumwin)
+  #:use-module (ice-9 match)
+  #:use-module (ncurses curses))
 
-    (move stdscr
-          (round (/ row 2))
-          (round (/ (- col len) 2)))
+;; Program Begins
+(define stdscr (initscr)) ; Start curses
+(cbreak!)                 ; Line buffering disabled
+(keypad! stdscr #t)       ; Check for function keys
 
-    (addstr stdscr mesg)
-    ;; Use "format" to generate a message, and then print it
-    (addstr stdscr
-            (format #f "This screen has ~a rows and ~a columns ~%"
-                    row col)
-            #:y (- row 2)
-            #:x 0)))
-
-(showme)
+(addstr stdscr "Press F1 to exit")
 (refresh stdscr)
-(getch stdscr)
+
+(define wins (map (lambda (args)
+                    (apply gumwincreate args))
+                  (gumlayget (getmaxyx stdscr))))
+
+(addstr stdscr (format #f "Layout is ~a ~%" wins))
+
+;; build windows with applied list
+(let loop ((layout (gumlayget (getmaxyx stdscr)))
+           (layoutwins wins)
+           (ch (getch stdscr)))
+  (cond
+   ((eqv? ch KEY_RESIZE)
+    (let ((layoutnew (gumlayget (getmaxyx stdscr))))
+
+      (addstr stdscr
+              (format #f "Layout is ~a ~%" (getmaxyx stdscr)))
+      (map gumwinrm layoutwins)
+      (loop layoutnew
+            (map (lambda (args)
+                   (apply gumwincreate args))
+                 layoutnew)
+            ;;layoutwins
+            (getch stdscr))))
+
+   ((eqv? ch (key-f 1))
+    #f)
+
+   (else
+    (loop layout
+          layoutwins
+          (getch stdscr)))))
+
 (endwin)
