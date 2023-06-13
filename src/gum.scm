@@ -31,6 +31,7 @@
            (ch (getch stdscr)))
   (cond
    ((eqv? ch KEY_RESIZE)
+    (refresh stdscr)
     (let ((layoutnew (gumlayget (getmaxyx stdscr))))
 
       (addstr stdscr
