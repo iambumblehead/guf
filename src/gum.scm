@@ -1,14 +1,6 @@
-#!/usr/bin/guile
-!#
-
-(load "gumlay.scm")
-(load "gumwin.scm")
-
 (define-module (gum gum)
-  #:version (0 0 1)
   #:use-module (gum gumlay)
   #:use-module (gum gumwin)
-  #:use-module (ice-9 match)
   #:use-module (ncurses curses))
 
 ;; Program Begins

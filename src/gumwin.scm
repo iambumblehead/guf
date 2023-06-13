@@ -1,6 +1,5 @@
 (define-module (gum gumwin)
   #:use-module (ncurses curses)
-  #:version (0 0 1)
   #:export (gumwincreate
             gumwinrm
             gumwinmv))

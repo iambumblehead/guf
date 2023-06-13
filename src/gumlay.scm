@@ -1,6 +1,5 @@
  ;; #:use-module (ncurses curses)
 (define-module (gum gumlay)
-  #:version (0 0 1)
   #:export (gumlayget))
 
 (define (gumlaymillerget cols height y)
