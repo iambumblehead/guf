@@ -1,5 +1,8 @@
 # changelog
 
+ * 0.0.3 _Jun.17.2023_
+   * add test
+   * mv src gum
  * 0.0.2 _Jun.13.2023_
    * add gui event loop
    * add some reactive ui to resize event

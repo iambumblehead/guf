@@ -1,6 +1,7 @@
  ;; #:use-module (ncurses curses)
 (define-module (gum gumlay)
-  #:export (gumlayget))
+  #:export (gumlayget
+            gumlaymillerget))
 
 (define (gumlaymillerget cols height y)
   (let ((colx (inexact->exact (round (* cols 0.125))))
