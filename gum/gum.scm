@@ -5,35 +5,24 @@
 
 ;; Program Begins
 (define stdscr (initscr)) ; Start curses
+(define layoutstart (gumlayget (getmaxyx stdscr)))
 (cbreak!)                 ; Line buffering disabled
 (keypad! stdscr #t)       ; Check for function keys
-
-(addstr stdscr "Press F1 to exit")
 (refresh stdscr)
 
-(define wins (map (lambda (args)
-                    (apply gumwincreate args))
-                  (gumlayget (getmaxyx stdscr))))
-
-(addstr stdscr (format #f "Layout is ~a ~%" wins))
-
-;; build windows with applied list
-(let loop ((layout (gumlayget (getmaxyx stdscr)))
-           (layoutwins wins)
+(let loop ((layout layoutstart)
+           (layoutwins (gumwinlistcreate layoutstart))
            (ch (getch stdscr)))
   (cond
    ((eqv? ch KEY_RESIZE)
     (refresh stdscr)
     (let ((layoutnew (gumlayget (getmaxyx stdscr))))
 
-      (addstr stdscr
-              (format #f "Layout is ~a ~%" (getmaxyx stdscr)))
-      (map gumwinrm layoutwins)
+      ;;(addstr stdscr
+      ;;         (format #f "Layout is ~a ~%" layout))
+      (gumwinlistrm layoutwins)
       (loop layoutnew
-            (map (lambda (args)
-                   (apply gumwincreate args))
-                 layoutnew)
-            ;;layoutwins
+            (gumwinlistcreate layoutnew)
             (getch stdscr))))
 
    ((eqv? ch (key-f 1))

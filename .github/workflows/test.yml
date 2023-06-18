@@ -16,4 +16,4 @@ jobs:
       - uses: guenchi/setup-scheme@master
         with:
           implementation: guile
-      - run: guile -L . test/gumlay.test.scm
+      - run: guile -L . test/*.test.scm
