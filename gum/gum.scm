@@ -1,6 +1,7 @@
 (define-module (gum gum)
-  #:use-module (gum gumlay)
   #:use-module (gum gumwin)
+  #:use-module (gum gumlay)
+  #:use-module (gum gumlaytitle)
   #:use-module (ncurses curses))
 
 ;; Program Begins
@@ -13,6 +14,11 @@
 (let loop ((layout layoutstart)
            (layoutwins (gumwinlistcreate layoutstart))
            (ch (getch stdscr)))
+
+  ;; (gumlaytitle-apply stdscr)
+  (refresh (caddr layoutwins))
+  (gumlaytitle-apply (caddr layoutwins))
+
   (cond
    ((eqv? ch KEY_RESIZE)
     (refresh stdscr)
@@ -25,7 +31,9 @@
             (gumwinlistcreate layoutnew)
             (getch stdscr))))
 
-   ((eqv? ch (key-f 1))
+   ((or (eqv? ch (key-f 1))
+        (eqv? ch #\esc)
+        (eqv? ch #\q))
     #f)
 
    (else
