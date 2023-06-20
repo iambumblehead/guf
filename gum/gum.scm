@@ -13,11 +13,10 @@
 
 (let loop ((layout layoutstart)
            (layoutwins (gumwinlistcreate layoutstart))
-           (ch (getch stdscr)))
+           (ch #f))
 
-  ;; (gumlaytitle-apply stdscr)
-  (refresh (caddr layoutwins))
-  (gumlaytitle-apply (caddr layoutwins))
+  (gumlaytitle-apply (car layoutwins))
+  (refresh (car layoutwins))
 
   (cond
    ((eqv? ch KEY_RESIZE)
