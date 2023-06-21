@@ -28,7 +28,7 @@
       (gumwinlistrm layoutwins)
       (loop layoutnew
             (gumwinlistcreate layoutnew)
-            (getch stdscr))))
+            #f)))
 
    ((or (eqv? ch (key-f 1))
         (eqv? ch #\esc)

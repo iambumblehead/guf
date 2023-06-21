@@ -1,5 +1,9 @@
 # changelog
 
+ * 0.0.4 _Jun.20.2023_
+   * add responsive titlebar rendering
+   * add q and esc exit key bindings
+   * add titlebar render function
  * 0.0.3 _Jun.17.2023_
    * add test
    * mv src gum
