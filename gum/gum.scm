@@ -9,6 +9,7 @@
 (define layoutstart (gumlayget (getmaxyx stdscr)))
 (cbreak!)                 ; Line buffering disabled
 (keypad! stdscr #t)       ; Check for function keys
+(start-color!)
 (refresh stdscr)
 
 (let loop ((layout layoutstart)
