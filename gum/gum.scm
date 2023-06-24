@@ -2,6 +2,7 @@
   #:use-module (gum gumwin)
   #:use-module (gum gumlay)
   #:use-module (gum gumlaytitle)
+  #:use-module (gum gumch)
   #:use-module (ncurses curses))
 
 ;; Program Begins
@@ -20,7 +21,7 @@
   (refresh (car layoutwins))
 
   (cond
-   ((eqv? ch KEY_RESIZE)
+   ((gumch-isRESIZE? ch)
     (refresh stdscr)
     (let ((layoutnew (gumlayget (getmaxyx stdscr))))
 
@@ -31,9 +32,7 @@
             (gumwinlistcreate layoutnew)
             #f)))
 
-   ((or (eqv? ch (key-f 1))
-        (eqv? ch #\esc)
-        (eqv? ch #\q))
+   ((gumch-isQUIT? ch)
     #f)
 
    (else
