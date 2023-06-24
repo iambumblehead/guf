@@ -21,6 +21,7 @@
   (refresh (car layoutwins))
 
   (cond
+   ((gumch-isQUIT? ch) #f)
    ((gumch-isRESIZE? ch)
     (refresh stdscr)
     (let ((layoutnew (gumlayget (getmaxyx stdscr))))
@@ -31,10 +32,6 @@
       (loop layoutnew
             (gumwinlistcreate layoutnew)
             #f)))
-
-   ((gumch-isQUIT? ch)
-    #f)
-
    (else
     (loop layout
           layoutwins
