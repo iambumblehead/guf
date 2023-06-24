@@ -3,6 +3,7 @@
   #:use-module (gum gumlay)
   #:use-module (gum gumlaytitle)
   #:use-module (gum gumch)
+  #:use-module (gum gumfs)
   #:use-module (ncurses curses))
 
 ;; Program Begins
@@ -19,6 +20,8 @@
 
   (gumlaytitle-apply (car layoutwins))
   (refresh (car layoutwins))
+
+  (addstr stdscr (format #f "list is ~a ~%" (gumfs-readdir)))
 
   (cond
    ((gumch-isQUIT? ch) #f)
