@@ -2,6 +2,7 @@
   #:use-module (gum gumwin)
   #:use-module (gum gumlay)
   #:use-module (gum gumlaytitle)
+  #:use-module (gum gumlayfiles)
   #:use-module (gum gumch)
   #:use-module (gum gumfs)
   #:use-module (ncurses curses))
@@ -19,18 +20,16 @@
            (ch #f))
 
   (gumlaytitle-apply (car layoutwins))
+  (gumlayfiles-apply (caddr layoutwins) (gumfs-readdir))
   (refresh (car layoutwins))
-
-  (addstr stdscr (format #f "list is ~a ~%" (gumfs-readdir)))
+  (refresh (caddr layoutwins))
+  ;;(addstr stdscr (format #f "list is ~a ~%" (gumfs-readdir)))
 
   (cond
    ((gumch-isQUIT? ch) #f)
    ((gumch-isRESIZE? ch)
     (refresh stdscr)
     (let ((layoutnew (gumlayget (getmaxyx stdscr))))
-
-      ;;(addstr stdscr
-      ;;         (format #f "Layout is ~a ~%" layout))
       (gumwinlistrm layoutwins)
       (loop layoutnew
             (gumwinlistcreate layoutnew)
