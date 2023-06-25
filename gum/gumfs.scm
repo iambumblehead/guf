@@ -3,7 +3,7 @@
   #:export (gumfs-readdir))
 
 (define (gumfs-cwd)
-  (dirname (current-filename)))
+  (getcwd))
 
 (define* (gumfs-readdir #:optional (dir (gumfs-cwd)))
   (scandir dir))
