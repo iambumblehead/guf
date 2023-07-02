@@ -5,6 +5,7 @@
   #:use-module (gum gumlayfiles)
   #:use-module (gum gumch)
   #:use-module (gum gumfs)
+  #:use-module (gum gumsort)
   #:use-module (ncurses curses))
 
 ;; Program Begins
@@ -20,7 +21,8 @@
            (ch #f))
 
   (gumlaytitle-apply (car layoutwins))
-  (gumlayfiles-apply (caddr layoutwins) (gumfs-readdir))
+  (gumlayfiles-apply (caddr layoutwins)
+                     (gumsortlist (gumfs-readdir)))
   (refresh (car layoutwins))
   (refresh (caddr layoutwins))
   ;;(addstr stdscr (format #f "list is ~a ~%" (gumfs-readdir)))
