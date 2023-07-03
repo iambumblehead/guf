@@ -2,6 +2,7 @@
 
  * 0.0.6 _Jul.02.2023_
    * add sorting
+   * add file-detail alist
  * 0.0.5 _Jun.25.2023_
    * add a directory listing
    * add a ch-handling file
