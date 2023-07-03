@@ -9,3 +9,4 @@ $ guile -L . test/*.test.scm
 
 examples,
  * https://notabug.org/ZelphirKaltstahl/guile-examples
+ * https://pleac.sourceforge.net/pleac_guile.html
