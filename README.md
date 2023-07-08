@@ -1,9 +1,9 @@
-## gum
+## guf
 
-![tests](https://github.com/iambumblehead/gum/actions/workflows/test.yml/badge.svg)
+![tests](https://github.com/iambumblehead/guf/actions/workflows/test.yml/badge.svg)
 
 ``` bash
-$ guile -L . gum/gum.scm
+$ guile -L . guf/guf.scm
 $ guile -L . test/*.test.scm
 ```
 
