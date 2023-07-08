@@ -2,7 +2,7 @@
   #:use-module (srfi srfi-64)
   #:use-module (guf guflay))
 
-(test-begin "gumfay")
+(test-begin "guflay")
 
 (test-equal "guflaymillerget returns miller-style window args"
             (guflaymillerget 640 480 1)
