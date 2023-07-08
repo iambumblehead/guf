@@ -1,42 +1,42 @@
-(define-module (gum gum)
-  #:use-module (gum gumwin)
-  #:use-module (gum gumlay)
-  #:use-module (gum gumlaytitle)
-  #:use-module (gum gumlayfiles)
-  #:use-module (gum gumch)
-  #:use-module (gum gumfs)
-  #:use-module (gum gumsort)
-  #:use-module (gum guffile)
+(define-module (guf guf)
+  #:use-module (guf gufwin)
+  #:use-module (guf guflay)
+  #:use-module (guf guflaytitle)
+  #:use-module (guf guflayfiles)
+  #:use-module (guf gufch)
+  #:use-module (guf guffs)
+  #:use-module (guf gufsort)
+  #:use-module (guf guffile)
   #:use-module (ncurses curses))
 
 ;; Program Begins
 (define stdscr (initscr)) ; Start curses
-(define layoutstart (gumlayget (getmaxyx stdscr)))
+(define layoutstart (guflayget (getmaxyx stdscr)))
 (cbreak!)                 ; Line buffering disabled
 (keypad! stdscr #t)       ; Check for function keys
 (start-color!)
 (refresh stdscr)
 
 (let loop ((layout layoutstart)
-           (layoutwins (gumwinlistcreate layoutstart))
+           (layoutwins (gufwinlistcreate layoutstart))
            (ch #f))
 
-  (gumlaytitle-apply (car layoutwins))
-  (gumlayfiles-apply (caddr layoutwins)
+  (guflaytitle-apply (car layoutwins))
+  (guflayfiles-apply (caddr layoutwins)
                      (guffile-createlist
-                      (gumsortlist (gumfs-readdir))))
+                      (gufsortlist (guffs-readdir))))
   (refresh (car layoutwins))
   (refresh (caddr layoutwins))
-  ;;(addstr stdscr (format #f "list is ~a ~%" (gumfs-readdir)))
+  ;;(addstr stdscr (format #f "list is ~a ~%" (guffs-readdir)))
 
   (cond
-   ((gumch-isQUIT? ch) #f)
-   ((gumch-isRESIZE? ch)
+   ((gufch-isQUIT? ch) #f)
+   ((gufch-isRESIZE? ch)
     (refresh stdscr)
-    (let ((layoutnew (gumlayget (getmaxyx stdscr))))
-      (gumwinlistrm layoutwins)
+    (let ((layoutnew (guflayget (getmaxyx stdscr))))
+      (gufwinlistrm layoutwins)
       (loop layoutnew
-            (gumwinlistcreate layoutnew)
+            (gufwinlistcreate layoutnew)
             #f)))
    (else
     (loop layout

@@ -1,4 +1,4 @@
-(define-module (gum guffile)
+(define-module (guf guffile)
   #:export (guffile-create
             guffile-createlist
             guffile-getfilename))

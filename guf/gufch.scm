@@ -1,12 +1,12 @@
-(define-module (gum gumch)
+(define-module (guf gufch)
   #:use-module (ncurses curses)
-  #:export (gumch-isRESIZE?
-            gumch-isQUIT?))
+  #:export (gufch-isRESIZE?
+            gufch-isQUIT?))
 
-(define (gumch-isRESIZE? ch)
+(define (gufch-isRESIZE? ch)
   (eqv? ch KEY_RESIZE))
 
-(define (gumch-isQUIT? ch)
+(define (gufch-isQUIT? ch)
   (or (eqv? ch (key-f 1))
       (eqv? ch #\esc)
       (eqv? ch #\q)))

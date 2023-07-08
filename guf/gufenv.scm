@@ -1,14 +1,14 @@
-(define-module (gum gumenv)
-  #:export (gumenv-nameuserget
-            gumenv-namehostget
-            gumenv-namecwdget))
+(define-module (guf gufenv)
+  #:export (gufenv-nameuserget
+            gufenv-namehostget
+            gufenv-namecwdget))
 
 ;; user, hostname and cwd
-(define (gumenv-nameuserget)
+(define (gufenv-nameuserget)
   (getenv "USER"))
 
-(define (gumenv-namehostget)
+(define (gufenv-namehostget)
   (vector-ref (uname) 1))
 
-(define (gumenv-namecwdget)
+(define (gufenv-namecwdget)
   (dirname (current-filename)))

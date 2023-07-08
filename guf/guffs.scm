@@ -1,9 +1,9 @@
-(define-module (gum gumfs)
+(define-module (guf guffs)
   #:use-module (ice-9 ftw)
-  #:export (gumfs-readdir))
+  #:export (guffs-readdir))
 
-(define (gumfs-cwd)
+(define (guffs-cwd)
   (getcwd))
 
-(define* (gumfs-readdir #:optional (dir (gumfs-cwd)))
+(define* (guffs-readdir #:optional (dir (guffs-cwd)))
   (scandir dir))

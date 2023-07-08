@@ -1,8 +1,8 @@
-(define-module (gum gumlay)
-  #:export (gumlayget
-            gumlaymillerget))
+(define-module (guf guflay)
+  #:export (guflayget
+            guflaymillerget))
 
-(define (gumlaymillerget cols height y)
+(define (guflaymillerget cols height y)
   (let ((colx (inexact->exact (round (* cols 0.125))))
         (coly (inexact->exact (round (* cols 0.5))))
         (colz cols))
@@ -13,10 +13,10 @@
 ;; (list (list height width y x)
 ;;       (list height width y x)
 ;;       (list height width y x))
-(define (gumlayget maxxy)
+(define (guflayget maxxy)
   (let* ((rows (car maxxy))
          (cols (cadr maxxy))
-         (colsmiller (gumlaymillerget cols (- rows 2) 1)))
+         (colsmiller (guflaymillerget cols (- rows 2) 1)))
     ;; (addstr stdscr
     ;;         (format #f "cols miller columns: ~a ~%"
     ;;                 (layoutmillerget cols (- rows 1) 1)))
