@@ -1,6 +1,6 @@
-(define-module (gum gumsort)
+(define-module (guf gufsort)
   #:use-module (ice-9 regex)
-  #:export (gumsortlist))
+  #:export (gufsortlist))
 
 (define (asalphanum str)
   (regexp-substitute/global #f "[^[:alnum:]]" str 'pre "" 'post))
@@ -8,5 +8,5 @@
 (define (sortalphanum left right)
   (string<? (asalphanum left) (asalphanum right)))
   
-(define (gumsortlist items)
+(define (gufsortlist items)
   (sort items sortalphanum))
