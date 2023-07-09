@@ -1,5 +1,9 @@
 # changelog
 
+ * 0.0.7 _Jul.09.2023_
+   * use file-detail alist at sorting
+   * use filtered file list, without '.' and '..'
+   * use transparency inheriting default-colors
  * 0.0.6 _Jul.02.2023_
    * add sorting
    * add file-detail alist

@@ -24,8 +24,8 @@
 
   (guflaytitle-apply (car layoutwins))
   (guflayfiles-apply (caddr layoutwins)
-                     (guffile-createlist
-                      (gufsortlist (guffs-readdir))))
+                     (gufsortfilelist (guffile-list-fromdir)))
+
   (refresh (car layoutwins))
   (refresh (caddr layoutwins))
   ;;(addstr stdscr (format #f "list is ~a ~%" (guffs-readdir)))
