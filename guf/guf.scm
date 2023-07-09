@@ -15,6 +15,7 @@
 (cbreak!)                 ; Line buffering disabled
 (keypad! stdscr #t)       ; Check for function keys
 (start-color!)
+(use-default-colors)
 (refresh stdscr)
 
 (let loop ((layout layoutstart)
