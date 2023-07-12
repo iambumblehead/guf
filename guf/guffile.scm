@@ -17,7 +17,6 @@
 
 ;; filepath must be a valid input, not "." or ".."
 (define (guffile-create filepath)
-  ;;(let ((filestat (stat (open-input-file filepath))))
   (let ((filestat (stat filepath)))
     (list
      (cons 'filename (basename filepath))
