@@ -3,7 +3,8 @@
   #:export (guffile-create
             guffile-createlist
             guffile-list-fromdir
-            guffile-getfilename))
+            guffile-getfilename
+            guffile-getfiletype))
 
 (define dir-sep-str file-name-separator-string)
 
@@ -26,6 +27,9 @@
 
 (define (guffile-getfilename file)
   (assoc-ref file 'filename))
+
+(define (guffile-getfiletype file)
+  (assoc-ref file 'filetype))
 
 (define* (guffile-list-fromdir #:optional (dir (guffs-cwd)))
   (map (lambda (file) (guffile-create (guffile-join-path dir file)))
