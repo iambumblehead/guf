@@ -3,15 +3,16 @@
   #:use-module (ncurses curses)
   #:use-module (guf guffile))
 
-;;(define (my-last lst)
-;;  (if (null? (cdr lst))
-;;      (car lst)
-;;      (my-last (cdr lst))))
-;; (assoc-ref hash key)
+;; color pair 0 is reserved for the default foreground and background colors.
 (define (guflayfiles-list win files row)
   (when (not (null? (cdr files)))
-    (addstr win (format #f "~a" (guffile-getfilename (car files)))
-            #:y row #:x 0)
+    (let ((file (car files)))
+      (if (eq? (guffile-getfiletype file) 'directory)
+          (attr-on! win (logior A_BOLD (color-pair 0)))
+          (attr-on! win (logior A_NORMAL (color-pair 0))))
+      (addstr win (format #f "~a" (guffile-getfilename file))
+              #:y row #:x 0)
+      (standend! win))
     (guflayfiles-list win (cdr files) (+ row 1))))
 
 (define (guflayfiles-apply win files)
