@@ -2,13 +2,19 @@
   #:use-module (ice-9 ftw)
   #:use-module (ice-9 regex)
   #:export (guffs-readdir
-            guffs-cwd))
+            guffs-cwd
+            guffs-isnotdotstr?))
 
 (define (guffs-cwd)
   (getcwd))
 
-(define (isdotstr? str)
-  (string-match "^\\.\\.?$" str))
+(define guffs-isdotstr-re (make-regexp "^\\.\\.?$"))
+
+(define (guffs-isdotstr? str)
+  (regexp-exec guffs-isdotstr-re str))
+
+(define (guffs-isnotdotstr? str)
+  (not (regexp-exec guffs-isdotstr-re str)))
 
 (define* (guffs-readdir #:optional (dir (guffs-cwd)))
-  (filter (lambda (item) (not (isdotstr? item))) (scandir dir)))
+  (scandir dir guffs-isnotdotstr?))
