@@ -1,5 +1,7 @@
 # changelog
 
+ * 0.0.8 _Jul.15.2023_
+   * use scandir filter function param
  * 0.0.7 _Jul.09.2023_
    * use file-detail alist at sorting
    * use filtered file list, without '.' and '..'
