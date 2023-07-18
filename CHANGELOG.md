@@ -1,5 +1,7 @@
 # changelog
 
+ * 0.0.9 _Jul.22.2023_
+   * add fun to return human readable sizes
  * 0.0.8 _Jul.15.2023_
    * use scandir filter function param
    * use bold for directory names
