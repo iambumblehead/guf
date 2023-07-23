@@ -6,7 +6,8 @@
             guffile-list-fromdir
             guffile-getfilenamealnum
             guffile-getfilename
-            guffile-getfiletype))
+            guffile-getfiletype
+            guffile-getsizebytes))
 
 (define dir-sep-str file-name-separator-string)
 
@@ -41,6 +42,9 @@
 
 (define (guffile-getfiletype file)
   (assoc-ref file 'filetype))
+
+(define (guffile-getsizebytes file)
+  (assoc-ref file 'filesizebytes))
 
 (define* (guffile-list-fromdir #:optional (dir (guffs-cwd)))
   (map (lambda (file) (guffile-create (guffile-join-path dir file)))
