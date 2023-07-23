@@ -22,8 +22,9 @@
 
 (define (bytes-to-unit bytes unit)
   (let ((unitbytes (car unit))
-        (unitlabel (caddr unit)))
-    (string-append (number->string (/ bytes unitbytes)) unitlabel)))
+        (unitlabel (cadddr unit)))
+      (format #f "~vd~a" 4
+              (round (/ bytes unitbytes)) unitlabel)))
 
 (define (bytes-to-unit-best bytes units)
   (let ((unit (car units)))
