@@ -1,4 +1,5 @@
 (define-module (guf gufbytes)
+  #:use-module (ice-9 format)
   #:export (bytes-to-human))
 
 ; https://en.wikipedia.org/wiki/Binary_prefix
@@ -23,7 +24,7 @@
 (define (bytes-to-unit bytes unit)
   (let ((unitbytes (car unit))
         (unitlabel (cadddr unit)))
-      (format #f "~vd~a" 4
+      (format #f "~vd~a" 0
               (round (/ bytes unitbytes)) unitlabel)))
 
 (define (bytes-to-unit-best bytes units)
